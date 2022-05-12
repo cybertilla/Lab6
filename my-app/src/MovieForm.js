@@ -3,23 +3,31 @@ import Movie from "./Movie"
 
 
 export default function MovieForm() {
+
     const [movies, setMovie] = useState([{
         id: 1,
         title: "wat",
         grade: 0
     }]);
 
+    const newMovie = useRef()
+
+    const addMovie = (event) => {
+        event.preventDefault()
+        console.log(newMovie.current.value)
+    }
+
     return (
         <div>
             <form>
-            <div class="mb-3">
-                <label class="form-label">Title</label>
-                <input type="text" class="form-control" id="movie-title"></input>
+            <div className="mb-3">
+                <label className="form-label">Title</label>
+                <input type="text" className="form-control" id="movie-title" ref={newMovie}></input>
             </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Select rating</label>
-                <select class="form-select" aria-label="Default select example">
-                <option selected>Open this select menu</option>
+            <div className="mb-3">
+                <label htmlFor="exampleInputPassword1" className="form-label">Select rating</label>
+                <select className="form-select" aria-label="Default select example">
+                <option value="0" defaultValue>Open this select menu</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
                 <option value="3">Three</option>
@@ -27,10 +35,10 @@ export default function MovieForm() {
                 <option value="5">Five</option>
             </select>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" className="btn btn-primary" onClick={addMovie}>Submit</button>
             
             </form>
-            <ul class="list-group">
+            <ul className="list-group">
                 { movies.map(movie => <Movie key={movie.id} item={movie}/> ) }
             </ul>
         </div>
