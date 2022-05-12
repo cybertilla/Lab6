@@ -1,5 +1,4 @@
 import MovieForm from "./MovieForm";
-import ListOfMovies from "./ListOfMovies";
 
 function App() {
   return (
@@ -11,7 +10,6 @@ function App() {
         </p>
       </header>
       <MovieForm />
-      <ListOfMovies />
     </div>
   );
 }

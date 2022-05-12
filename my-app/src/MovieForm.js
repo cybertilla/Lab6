@@ -1,4 +1,6 @@
 import React, { useState, useRef } from 'react';
+import Movie from "./Movie"
+
 
 export default function MovieForm() {
     const [movies, setMovie] = useState([{
@@ -28,6 +30,10 @@ export default function MovieForm() {
             <button type="submit" class="btn btn-primary">Submit</button>
             
             </form>
+            <ul class="list-group">
+                { movies.map(movie => <Movie key={movie.id} item={movie}/> ) }
+            </ul>
         </div>
+            
     )
 };
