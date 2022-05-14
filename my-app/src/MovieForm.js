@@ -1,24 +1,23 @@
 import React, { useState, useRef } from 'react';
 import Movie from "./Movie"
 
-
 export default function MovieForm() {
 
     const [movies, setMovie] = useState([{
-        id: ":(",
+        id: 1,
         title: "This is fine",
-        grade: 5
+        grade: "1"
     }]);
 
     const newTitle = useRef();
     const newGrade = useRef();
 
     function addMovie (event) {
-        event.preventDefault()
-        //if 
-        console.log(newGrade.current.value)
+        event.preventDefault()        
 
-        const newMovie = movies.length > 0 ? movies[movies.length - 1].id + 1 : 1;
+        const newMovie = movies.length > 0 ? movies.length + 1 : 1;
+//        const newMovie = movies.length > 0 ? movies[movies.length - 1].id + 1 : 1;
+        
         setMovie([...movies, {
             id: newMovie,
             title: newTitle.current.value,
@@ -28,6 +27,24 @@ export default function MovieForm() {
         newGrade.current.value = "0";
         newTitle.current.value = "";
     }
+
+    function deleteMovie (index) {
+        setMovie(movies => movies.filter((item) => item.id !== index));
+    };
+
+    function orderMoviesAlphaB() {
+        
+        let newAlphabeticalList = [...movies].sort((a, b) => a.title.localeCompare(b.title))
+        console.log(newAlphabeticalList)
+        setMovie( newAlphabeticalList)
+    };
+    
+    function orderMoviesRating() {
+        let newRatedList = [...movies].sort((a, b) => a.grade.localeCompare(b.grade))
+        console.log(newRatedList);
+        setMovie(newRatedList)
+    };
+    
 
     return (
         <div>
@@ -50,10 +67,15 @@ export default function MovieForm() {
             <button type="submit" className="btn btn-primary" onClick={addMovie}>Submit</button>
             
             </form>
+            <button type="button" className='btn btn-success' onClick={orderMoviesAlphaB}>Order the movies by title</button>
+            <button type="button" className='btn btn-success' onClick={orderMoviesRating}>Order the movies by rating</button>
+
+
             <ul className="list-group">
-                { movies.map(movie => <Movie key={movie.id} item={movie}/> ) }
+                { movies.map(movie => <Movie key={movie.id} item={movie} deleteMovie={deleteMovie}/> ) }
             </ul>
         </div>
             
     )
 };
+
