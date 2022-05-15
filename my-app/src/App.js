@@ -3,7 +3,7 @@ import MovieForm from "./MovieForm";
 function App() {
   return (
     <div>
-      <header>
+      <header style={{ margin: "20px" }}>
         <h1>Movie Finder</h1>
         <p>
           A collection of movies

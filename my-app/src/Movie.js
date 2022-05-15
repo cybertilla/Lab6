@@ -6,10 +6,10 @@ export default function Movie(props) {
 
     return (
         <li className="list-group-item">
-            {  props.item.title }
+            {props.item.title}
             {/* create an array of length n and put stars in it */}
-            {Array.from({length: n}, (_, i) => <img src={star} key={i}></img>)}
-            <button className="btn btn-sm btn-danger float-end" onClick={() => {props.deleteMovie(props.item.id)}}>X</button>
+            {Array.from({ length: n }, (_, i) => <img src={star} key={i} style={{ width: "30px" }}></img>)}
+            <button className="btn btn-sm btn-danger float-end" onClick={() => { props.deleteMovie(props.item.id) }}>X</button>
         </li>
     )
 }
